@@ -1,0 +1,73 @@
+stream type:
+    DataStream
+    KeyedStream
+    AllWindowStream
+    WindowStream
+
+transformation operation type:
+    filter
+        FilterFunction
+    map (stateless)
+        MapFunction
+        RichMapFunction (operator lifecycle management (open/close))
+    flatMap (stateless)
+        FlatMapFunction
+        RichFlatMapFunction (operator lifecycle management (open/close))
+    reduce (on KeyedStream only?)
+        ReduceFunction
+    apply (on AllWindowedStream, WindowStream only?) (stateless)
+        AllWindowFunction
+        WindowFunction (keyed window)
+    process (access context, stateful)
+        ProcessFunction (can be used with KeyedStream?)
+        KeyedProcessFunction (process on KeyedStream)
+        ProcessAllWindowFunction (process on AllWindowedStream, access to context)
+        ProcessWindowFunction? (process on WindowedStream, access to context)
+    aggregate
+        AggregateFunction
+
+grouping operation type:
+    keyBy
+        KeySelector
+    windowAll
+        WindowAssigner
+            TumblingEventTimeWindows
+            TumblingProcessingTimeWindows
+            SlidingEventTimeWindows
+            EventTimeSessionWindows
+            etc
+    window (on KeyedStream)
+        WindowAssigner
+
+window definition:
+    WindowAssigner
+        TumblingEventTimeWindows
+        TumblingProcessingTimeWindows
+        SlidingEventTimeWindows
+        EventTimeSessionWindows
+        etc
+    window type
+        tumbling
+        sliding
+        session gap
+        global
+    window axis type
+        count based
+        time based
+            event time
+            processing time
+        attribute based?
+    window size
+    window frequency (for sliding window)
+    watermark strategy & timestamp assigner
+        boundedOutOfOrderness
+        custom strategy
+        custom timestamp assigner
+
+State Type
+    Operator State
+    Keyed State
+
+
+
+

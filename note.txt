@@ -1,0 +1,50 @@
+All fields in the entity must be Serializable
+Data Types:
+    Primitive data types
+    POJO (FlinkPojo is different from regular Java Pojo))
+        * pojo is more efficient than general class
+        Java POJO:
+            * plain class that can be used by any Java program without particular dependency
+            - no dependency on third-party framework or library via subclassing or annotation
+            - can implement Serializable marker class
+            - not necessarily useful for Reflection due to no restriction thru convention
+        Java Bean:
+            * Serializable class following strict convention to allow Reflection also with strict control over fields
+            - must implement Serializable marker class
+            - public default constructor (no-args)
+            - all fields must be accessible via getters and setters
+        Flink POJO:
+            * simple class without dependency and enable Flink functionality thru Reflection
+            * no need to strictly control/encapsulate fields
+            * basically a JavaBean but with option to access field thru non-encapsulation instead of getter and setter
+            - no dependency on third-party framework or library via subclassing or annotation
+            - public default constructor (no-args)
+            - all fields must be accessible for Reflection
+                public
+                or getter and setter
+            - all fields must be serializable
+                eg) an ArrayList is serializable whereas List is not
+    General Class (anything that is not POJO)
+        * less efficient because it is treated as black box
+        * not all fields are visible/accessible to enable Flink optimization functionality thru Reflection
+
+
+Serializable?
+Which class needs to be Serializable?
+List vs ArrayList?
+How to create ArrayList?
+
+
+Incremental Aggregation (eagerly aggregated) vs Accumulated Aggregation
+    AggregatorFunction, ReducerFunction VS ProcessWindowFunction
+pre-aggregation?
+    I think incremental aggregation are considered pre-aggregation in the context of windowing.
+
+Function Categorization
+    keyed?
+    collection of input?
+    collection of output?
+    context?
+        window
+        state
+        etc
