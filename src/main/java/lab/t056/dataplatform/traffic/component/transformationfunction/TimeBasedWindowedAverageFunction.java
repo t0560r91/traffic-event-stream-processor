@@ -1,16 +1,17 @@
-package lab.t056.dataplatform.traffic.operator.transformation;
+package lab.t056.dataplatform.traffic.component.transformationfunction;
 
-import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
+import lab.t056.dataplatform.traffic.entity.event.TrafficMeterEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
-import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
+import org.apache.flink.streaming.api.functions.windowing.AllWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
 import java.time.Instant;
 import java.util.UUID;
 
-public class TimeBasedKeyedWindowedAverageFunction
-    implements WindowFunction<VehicleEvent, PerVehicleTypeTrafficMeterEvent, String, TimeWindow> {
+// WindowFunction is deprecated in favor of ProcessWindowFunction.
+public class TimeBasedWindowedAverageFunction
+    implements AllWindowFunction<VehicleEvent, TrafficMeterEvent, TimeWindow> {
 
   // Function is created per partition.
   private Long vehicleCounts;
@@ -21,10 +22,9 @@ public class TimeBasedKeyedWindowedAverageFunction
   private Instant firstTimestamp;
 
   @Override
-  public void apply(String key,
-                    TimeWindow timeWindow,
+  public void apply(TimeWindow timeWindow,
                     Iterable<VehicleEvent> iterable,
-                    Collector<PerVehicleTypeTrafficMeterEvent> collector) throws Exception {
+                    Collector<TrafficMeterEvent> collector) throws Exception {
 
     // apply method is called per Window.
 
@@ -33,6 +33,7 @@ public class TimeBasedKeyedWindowedAverageFunction
     minSpeed = Double.MAX_VALUE;
     averageSpeed = null;
     lastTimestamp = null;
+    firstTimestamp = null;
 
     iterable.forEach(e -> {
 
@@ -60,10 +61,9 @@ public class TimeBasedKeyedWindowedAverageFunction
     });
 
     collector.collect(
-        new PerVehicleTypeTrafficMeterEvent(
+        new TrafficMeterEvent(
             UUID.randomUUID(),
             Instant.now(),
-            key,
             vehicleCounts,
             averageSpeed,
             maxSpeed,
@@ -75,5 +75,4 @@ public class TimeBasedKeyedWindowedAverageFunction
         ));
 
   }
-
 }

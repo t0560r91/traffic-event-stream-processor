@@ -6,7 +6,6 @@ import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import lab.t056.dataplatform.traffic.entity.thing.*;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
-import java.sql.Array;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;

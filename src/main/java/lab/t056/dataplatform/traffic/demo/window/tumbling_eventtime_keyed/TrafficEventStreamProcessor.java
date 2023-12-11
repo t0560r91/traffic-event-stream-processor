@@ -2,9 +2,9 @@ package lab.t056.dataplatform.traffic.demo.window.tumbling_eventtime_keyed;
 
 import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
-import lab.t056.dataplatform.traffic.operator.keyselector.VehicleTypeKeySelector;
-import lab.t056.dataplatform.traffic.operator.timestampassigner.VehicleEventTimestampAssigner;
-import lab.t056.dataplatform.traffic.operator.transformation.TimeBasedKeyedWindowedAverageFunction;
+import lab.t056.dataplatform.traffic.component.keyselector.VehicleTypeKeySelector;
+import lab.t056.dataplatform.traffic.component.timestampassigner.VehicleEventTimestampAssigner;
+import lab.t056.dataplatform.traffic.component.transformationfunction.TimeBasedKeyedWindowedAverageFunction;
 import lab.t056.dataplatform.traffic.source.TrafficEventGenerator;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.streaming.api.datastream.DataStream;

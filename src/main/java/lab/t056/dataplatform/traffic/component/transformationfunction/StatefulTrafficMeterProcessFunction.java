@@ -1,7 +1,6 @@
-package lab.t056.dataplatform.traffic.operator.transformation;
+package lab.t056.dataplatform.traffic.component.transformationfunction;
 
 import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
-import lab.t056.dataplatform.traffic.entity.event.TrafficMeterEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import org.apache.flink.api.common.functions.RuntimeContext;
 import org.apache.flink.api.common.state.ValueState;
@@ -72,10 +71,6 @@ public class StatefulTrafficMeterProcessFunction
             null
         )
     );
-
-
-
-
   }
 
   @Override
@@ -103,10 +98,19 @@ public class StatefulTrafficMeterProcessFunction
     );
     stateMinSpeed = ctx.getState(
         new ValueStateDescriptor<>(
-            "state3",
+            "state4",
             TypeInformation.of(Double.class)
         )
     );
   }
+
+  @Override
+  public void close() throws Exception {
+    stateCounts.clear();
+    stateAvgSpeed.clear();
+    stateMaxSpeed.clear();
+    stateMinSpeed.clear();
+  }
+
 
 }

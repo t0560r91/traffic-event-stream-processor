@@ -1,10 +1,9 @@
-package lab.t056.dataplatform.traffic.operator.transformation;
+package lab.t056.dataplatform.traffic.component.transformationfunction;
 
 import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
 
 import java.time.Instant;

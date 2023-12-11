@@ -1,7 +1,7 @@
 package lab.t056.dataplatform.traffic.demo.essential.filter;
 
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
-import lab.t056.dataplatform.traffic.operator.transformation.TracktorTrailerFilterFunction;
+import lab.t056.dataplatform.traffic.component.transformationfunction.TracktorTrailerFilterFunction;
 import lab.t056.dataplatform.traffic.source.TrafficEventGenerator;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;

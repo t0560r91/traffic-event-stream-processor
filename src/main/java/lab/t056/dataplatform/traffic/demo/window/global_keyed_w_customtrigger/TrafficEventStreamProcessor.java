@@ -1,17 +1,14 @@
-package lab.t056.dataplatform.traffic.demo.window.global_keyed;
+package lab.t056.dataplatform.traffic.demo.window.global_keyed_w_customtrigger;
 
-import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
-import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import lab.t056.dataplatform.traffic.component.keyselector.VehicleTypeKeySelector;
 import lab.t056.dataplatform.traffic.component.transformationfunction.CountBasedWindowedAverageFunction;
+import lab.t056.dataplatform.traffic.component.trigger.CommercialLicenseBasedCountTrigger;
+import lab.t056.dataplatform.traffic.entity.event.PerVehicleTypeTrafficMeterEvent;
+import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import lab.t056.dataplatform.traffic.source.TrafficEventGenerator;
 import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.GlobalWindows;
-import org.apache.flink.streaming.api.windowing.triggers.CountTrigger;
-import org.apache.flink.streaming.api.windowing.triggers.PurgingTrigger;
-import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 
 
 public class TrafficEventStreamProcessor {
@@ -20,20 +17,19 @@ public class TrafficEventStreamProcessor {
     DataStream<VehicleEvent> vehicleEvents = env
         .addSource(new TrafficEventGenerator(3, 1));
 
-    // Alter stream (stream of event type, window type (TimeWindow vs GlobalWindow))
-    WindowedStream<VehicleEvent, String, GlobalWindow> windowedVehicleEvents =
-        vehicleEvents
-            .keyBy(new VehicleTypeKeySelector())
-            .window(GlobalWindows.create())
-            .trigger(PurgingTrigger.of(CountTrigger.of(2)));
 
     // Transform events
-    windowedVehicleEvents
+    vehicleEvents
+        .keyBy(new VehicleTypeKeySelector())
+        .window(
+            GlobalWindows.create()
+        )
+        .trigger(new CommercialLicenseBasedCountTrigger())
         .process(new CountBasedWindowedAverageFunction())
         .map(PerVehicleTypeTrafficMeterEvent::toString)
         .print();
 
     env.execute();
-
+    // Look for meter events aggregating all tumbling vehicles by vehicle type for every 3 commercial license type.
   }
 }

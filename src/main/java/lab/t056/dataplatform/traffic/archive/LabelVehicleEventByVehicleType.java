@@ -1,6 +1,5 @@
 package lab.t056.dataplatform.traffic.archive;
 
-import lab.t056.dataplatform.traffic.entity.enums.DriverLabel;
 import lab.t056.dataplatform.traffic.entity.event.LabeledVehicleEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import org.apache.flink.streaming.api.functions.KeyedProcessFunction;

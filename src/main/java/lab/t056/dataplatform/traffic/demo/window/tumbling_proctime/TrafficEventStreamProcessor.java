@@ -2,7 +2,7 @@ package lab.t056.dataplatform.traffic.demo.window.tumbling_proctime;
 
 import lab.t056.dataplatform.traffic.entity.event.TrafficMeterEvent;
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
-import lab.t056.dataplatform.traffic.operator.transformation.TimeBasedWindowedAverageFunction;
+import lab.t056.dataplatform.traffic.component.transformationfunction.TimeBasedWindowedAverageFunction;
 import lab.t056.dataplatform.traffic.source.TrafficEventGenerator;
 import org.apache.flink.streaming.api.datastream.AllWindowedStream;
 import org.apache.flink.streaming.api.datastream.DataStream;

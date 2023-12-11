@@ -1,4 +1,4 @@
-package lab.t056.dataplatform.traffic.operator.keyselector;
+package lab.t056.dataplatform.traffic.component.keyselector;
 
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import org.apache.flink.api.java.functions.KeySelector;

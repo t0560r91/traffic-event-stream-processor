@@ -1,4 +1,4 @@
-package lab.t056.dataplatform.traffic.operator.timestampassigner;
+package lab.t056.dataplatform.traffic.component.timestampassigner;
 
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;

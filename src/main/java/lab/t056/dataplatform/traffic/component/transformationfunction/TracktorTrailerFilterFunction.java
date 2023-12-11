@@ -1,4 +1,4 @@
-package lab.t056.dataplatform.traffic.operator.transformation;
+package lab.t056.dataplatform.traffic.component.transformationfunction;
 
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
 import lab.t056.dataplatform.traffic.entity.thing.TractorTrailer;

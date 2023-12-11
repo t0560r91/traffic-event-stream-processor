@@ -1,8 +1,8 @@
 package lab.t056.dataplatform.traffic.demo.essential.reduce;
 
 import lab.t056.dataplatform.traffic.entity.event.VehicleEvent;
-import lab.t056.dataplatform.traffic.operator.keyselector.VehicleTypeKeySelector;
-import lab.t056.dataplatform.traffic.operator.transformation.MaxSpeedVehicleEventReducerFunction;
+import lab.t056.dataplatform.traffic.component.keyselector.VehicleTypeKeySelector;
+import lab.t056.dataplatform.traffic.component.transformationfunction.MaxSpeedVehicleEventReducerFunction;
 import lab.t056.dataplatform.traffic.source.TrafficEventGenerator;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
